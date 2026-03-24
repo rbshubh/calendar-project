@@ -403,6 +403,11 @@ h1 {
   box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.06);
 }
 
+#task-time::-webkit-calendar-picker-indicator {
+  filter: invert(84%) sepia(30%) saturate(1126%) hue-rotate(166deg) brightness(103%) contrast(101%);
+  cursor: pointer;
+}
+
 .task-form button,
 .task-remove {
   border: 0;
