@@ -74,6 +74,44 @@ body::after {
   background: rgba(255, 255, 255, 0.08);
 }
 
+.watermark {
+  position: fixed;
+  top: 18px;
+  right: 18px;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(14, 14, 14, 0.78);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.24);
+  backdrop-filter: blur(10px);
+}
+
+.watermark-mark {
+  display: inline-grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ffffff, #bdbdbd);
+  color: #111;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.watermark-name {
+  color: #f3f3f3;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
 .glow-right {
   right: -60px;
   bottom: 80px;
@@ -704,5 +742,22 @@ h1 {
 
   .month-slider-toolbar {
     grid-template-columns: 1fr;
+  }
+
+  .watermark {
+    top: 12px;
+    right: 12px;
+    padding: 7px 10px;
+  }
+
+  .watermark-mark {
+    width: 24px;
+    height: 24px;
+    font-size: 0.68rem;
+  }
+
+  .watermark-name {
+    font-size: 0.74rem;
+    letter-spacing: 0.12em;
   }
 }
