@@ -1,0 +1,708 @@
+:root {
+  --bg-1: #050505;
+  --bg-2: #101010;
+  --bg-3: #1a1a1a;
+  --ink: #f7f7f7;
+  --muted: #b8b8b8;
+  --line: rgba(255, 255, 255, 0.14);
+  --card: rgba(14, 14, 14, 0.86);
+  --shadow: 0 28px 60px rgba(0, 0, 0, 0.52);
+  --india-1: #f1f1f1;
+  --india-2: #ffffff;
+  --intl-1: #9b9b9b;
+  --intl-2: #d9d9d9;
+  --sunday-1: #202020;
+  --sunday-2: #343434;
+  --today-ring: #ffffff;
+  --month-top: linear-gradient(135deg, rgba(255, 255, 255, 0.14), rgba(66, 66, 66, 0.32));
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Manrope", sans-serif;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 50% 12%, rgba(255, 255, 255, 0.1), transparent 10%),
+    radial-gradient(circle at 50% 12%, rgba(255, 255, 255, 0.04), transparent 18%),
+    radial-gradient(circle at top left, rgba(255, 255, 255, 0.06), transparent 24%),
+    radial-gradient(circle at 85% 14%, rgba(255, 255, 255, 0.06), transparent 18%),
+    radial-gradient(circle at 18% 82%, rgba(255, 255, 255, 0.05), transparent 24%),
+    linear-gradient(145deg, var(--bg-1), var(--bg-2) 46%, var(--bg-3));
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 32px 32px;
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 50% 10%, rgba(255, 255, 255, 0.12), transparent 9%),
+    radial-gradient(circle at 50% 10%, rgba(255, 255, 255, 0.04), transparent 4%);
+}
+
+.page-glow {
+  position: fixed;
+  z-index: 0;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  filter: blur(28px);
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+.glow-left {
+  top: 60px;
+  left: -80px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.glow-right {
+  right: -60px;
+  bottom: 80px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.layout {
+  position: relative;
+  z-index: 1;
+  width: min(1280px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 36px 0 56px;
+}
+
+.hero,
+.highlights,
+.planner-section,
+.calendar-section {
+  background: var(--card);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(16px);
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 24px;
+  padding: 30px;
+  border-radius: 34px;
+}
+
+.eyebrow,
+.section-kicker,
+.card-label {
+  margin: 0 0 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+.eyebrow,
+.card-label {
+  color: #ffffff;
+}
+
+.section-kicker {
+  color: #d8d8d8;
+}
+
+h1,
+h2,
+h3,
+h4,
+.month-title {
+  font-family: "Playfair Display", serif;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(2.4rem, 5vw, 4.6rem);
+  line-height: 0.95;
+  max-width: 11ch;
+}
+
+.hero-text {
+  max-width: 58ch;
+  margin: 18px 0 0;
+  color: var(--muted);
+  font-size: 1.04rem;
+  line-height: 1.7;
+}
+
+.hero-panels {
+  display: grid;
+  gap: 18px;
+}
+
+.info-card {
+  border-radius: 24px;
+  padding: 22px;
+  border: 1px solid var(--line);
+  background: rgba(22, 22, 22, 0.82);
+}
+
+.accent-card {
+  background:
+    radial-gradient(circle at top right, rgba(255, 255, 255, 0.12), transparent 35%),
+    linear-gradient(135deg, rgba(66, 66, 66, 0.22), rgba(14, 14, 14, 0.94));
+}
+
+.accent-card h2,
+.legend-card h2 {
+  margin: 0 0 10px;
+  font-size: 1.65rem;
+  line-height: 1.15;
+}
+
+.card-note {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.legend-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.legend-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 14px;
+  border-radius: 999px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.legend-pill.india {
+  color: #111;
+  background: linear-gradient(135deg, rgba(241, 241, 241, 0.92), rgba(255, 255, 255, 0.92));
+}
+
+.legend-pill.international {
+  color: #f1f1f1;
+  background: linear-gradient(135deg, rgba(88, 88, 88, 0.68), rgba(140, 140, 140, 0.52));
+}
+
+.legend-pill.sunday {
+  color: #ffffff;
+  background: linear-gradient(135deg, rgba(52, 52, 52, 0.95), rgba(32, 32, 32, 0.95));
+}
+
+.highlights,
+.planner-section,
+.calendar-section {
+  margin-top: 24px;
+  padding: 26px;
+  border-radius: 30px;
+}
+
+.section-heading h2 {
+  margin: 0;
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+}
+
+.highlights-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 14px;
+  margin-top: 20px;
+}
+
+.highlight-card {
+  padding: 18px;
+  border-radius: 22px;
+  border: 1px solid var(--line);
+  background: linear-gradient(180deg, rgba(27, 27, 27, 0.96), rgba(16, 16, 16, 0.96));
+}
+
+.highlight-card.india {
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.16);
+}
+
+.highlight-card.international {
+  box-shadow: inset 0 0 0 1px rgba(170, 170, 170, 0.14);
+}
+
+.highlight-date {
+  margin: 0 0 8px;
+  color: var(--muted);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+}
+
+.highlight-name {
+  margin: 0;
+  font-size: 1.15rem;
+}
+
+.highlight-type {
+  margin: 10px 0 0;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.highlight-card.india .highlight-type {
+  color: #ffffff;
+}
+
+.highlight-card.international .highlight-type {
+  color: #cfcfcf;
+}
+
+.calendar-slider {
+  margin-top: 22px;
+}
+
+.month-slider-toolbar {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 14px;
+  margin-top: 20px;
+}
+
+.month-slider-title {
+  text-align: center;
+  font-family: "Playfair Display", serif;
+  font-size: clamp(1.4rem, 4vw, 2rem);
+  font-weight: 700;
+}
+
+.month-nav {
+  border: 0;
+  cursor: pointer;
+  padding: 12px 16px;
+  border-radius: 14px;
+  font: inherit;
+  font-weight: 700;
+  color: white;
+  background: linear-gradient(135deg, #f2f2f2, #8f8f8f);
+  box-shadow: 0 12px 24px rgba(5, 12, 24, 0.42);
+  color: #111;
+}
+
+.planner-panel {
+  margin-top: 20px;
+  padding: 22px;
+  border-radius: 24px;
+  border: 1px solid var(--line);
+  background: linear-gradient(180deg, rgba(27, 27, 27, 0.96), rgba(16, 16, 16, 0.96));
+}
+
+.planner-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.planner-label {
+  margin: 0 0 8px;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+.planner-head h3 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.planner-note {
+  max-width: 34ch;
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.task-form {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 140px auto;
+  gap: 12px;
+}
+
+.task-form input {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(20, 20, 20, 0.96);
+  font: inherit;
+  color: var(--ink);
+  outline: none;
+}
+
+.task-form input:focus {
+  border-color: rgba(255, 255, 255, 0.24);
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.06);
+}
+
+.task-form button,
+.task-remove {
+  border: 0;
+  font: inherit;
+  cursor: pointer;
+}
+
+.task-form button {
+  padding: 14px 18px;
+  border-radius: 16px;
+  color: white;
+  background: linear-gradient(135deg, #f2f2f2, #8f8f8f);
+  box-shadow: 0 12px 24px rgba(5, 12, 24, 0.42);
+  color: #111;
+}
+
+.task-list {
+  list-style: none;
+  margin: 18px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.alarm-tools {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 14px;
+  flex-wrap: wrap;
+}
+
+.notify-btn {
+  border: 0;
+  cursor: pointer;
+  padding: 11px 14px;
+  border-radius: 14px;
+  font: inherit;
+  font-weight: 700;
+  color: #111;
+  background: linear-gradient(135deg, #ffffff, #8c8c8c);
+}
+
+.alarm-note {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.task-item,
+.task-empty {
+  border-radius: 18px;
+  border: 1px solid var(--line);
+  background: rgba(19, 19, 19, 0.92);
+}
+
+.task-item {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+}
+
+.task-toggle {
+  width: 18px;
+  height: 18px;
+  accent-color: #0f8b8d;
+}
+
+.task-text {
+  color: var(--ink);
+  line-height: 1.5;
+}
+
+.task-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.task-time-label {
+  color: #d8d8d8;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.task-item.done .task-text {
+  color: var(--muted);
+  text-decoration: line-through;
+}
+
+.task-remove {
+  padding: 8px 10px;
+  border-radius: 12px;
+  color: #ffffff;
+  background: rgba(76, 76, 76, 0.4);
+}
+
+.task-empty {
+  padding: 18px 16px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.month-card {
+  overflow: hidden;
+  border-radius: 24px;
+  border: 1px solid var(--line);
+  background: rgba(14, 14, 14, 0.94);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.28);
+  animation: card-rise 480ms ease both;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.month-header {
+  padding: 18px 18px 14px;
+  background: var(--month-top);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.month-title {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.month-subtitle {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.weekdays,
+.days-grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+}
+
+.weekdays {
+  padding: 12px 12px 0;
+}
+
+.weekdays span {
+  padding: 6px 0;
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.days-grid {
+  gap: 6px;
+  padding: 12px;
+}
+
+.day {
+  min-height: 86px;
+  padding: 8px 6px 7px;
+  border-radius: 16px;
+  border: 1px solid transparent;
+  background: rgba(24, 24, 24, 0.82);
+  transition: transform 180ms ease, box-shadow 180ms ease;
+  cursor: pointer;
+}
+
+.day:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 22px rgba(0, 0, 0, 0.28);
+}
+
+.day.empty {
+  background: transparent;
+  min-height: 86px;
+}
+
+.day-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-weight: 800;
+  font-size: 0.92rem;
+}
+
+.day.today .day-number {
+  outline: 3px solid rgba(255, 255, 255, 0.26);
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 0 18px rgba(255, 255, 255, 0.12);
+}
+
+.day.selected {
+  border-color: rgba(255, 255, 255, 0.22);
+  box-shadow: 0 12px 24px rgba(255, 255, 255, 0.08);
+}
+
+.day.selected .day-number {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.day.sunday {
+  background: linear-gradient(180deg, rgba(52, 52, 52, 0.82), rgba(20, 20, 20, 0.9));
+}
+
+.day.india-holiday {
+  border-color: rgba(255, 255, 255, 0.22);
+  background: linear-gradient(180deg, rgba(56, 56, 56, 0.92), rgba(22, 22, 22, 0.94));
+}
+
+.day.international-holiday {
+  border-color: rgba(170, 170, 170, 0.18);
+}
+
+.day.india-holiday.international-holiday {
+  background:
+    linear-gradient(180deg, rgba(66, 66, 66, 0.94), rgba(28, 28, 28, 0.96));
+}
+
+.holiday-tags {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 8px;
+}
+
+.holiday-tag {
+  display: block;
+  padding: 4px 7px;
+  border-radius: 999px;
+  font-size: 0.64rem;
+  font-weight: 800;
+  line-height: 1.25;
+  letter-spacing: 0.03em;
+}
+
+.holiday-tag.india {
+  color: #111;
+  background: linear-gradient(135deg, rgba(241, 241, 241, 0.9), rgba(255, 255, 255, 0.92));
+}
+
+.holiday-tag.international {
+  color: #f2f2f2;
+  background: linear-gradient(135deg, rgba(88, 88, 88, 0.68), rgba(160, 160, 160, 0.5));
+}
+
+.task-count-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  margin-top: 6px;
+  padding: 0 6px;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #111;
+  font-size: 0.68rem;
+  font-weight: 800;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@keyframes card-rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 1100px) {
+  .hero {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  .layout {
+    width: min(100%, calc(100% - 20px));
+    padding-top: 20px;
+    padding-bottom: 30px;
+  }
+
+  .hero,
+  .highlights,
+  .planner-section,
+  .calendar-section {
+    padding: 20px;
+    border-radius: 24px;
+  }
+
+  .calendar-slider {
+    margin-top: 18px;
+  }
+
+  .day,
+  .day.empty {
+    min-height: 78px;
+  }
+
+  .planner-head {
+    flex-direction: column;
+  }
+
+  .task-form {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .task-item {
+    grid-template-columns: auto 1fr;
+  }
+
+  .task-remove {
+    grid-column: 2;
+    justify-self: start;
+  }
+
+  .month-slider-toolbar {
+    grid-template-columns: 1fr;
+  }
+}

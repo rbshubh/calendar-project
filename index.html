@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2026 Festival Calendar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="page-glow glow-left" aria-hidden="true"></div>
+  <div class="page-glow glow-right" aria-hidden="true"></div>
+
+  <main class="layout">
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">Festival Planner 2026</p>
+        <h1>Indian and International Holiday Calendar</h1>
+        <p class="hero-text">
+          A bright year-view calendar for 2026 with selected Indian holidays and major international observances highlighted directly on their dates.
+        </p>
+      </div>
+
+      <div class="hero-panels">
+        <article class="info-card accent-card">
+          <p class="card-label">Year Theme</p>
+          <h2>Celebrate, plan, and remember every important day.</h2>
+          <p class="card-note">Sundays and holidays are visually marked so the page feels useful at a glance.</p>
+        </article>
+
+        <article class="info-card legend-card">
+          <p class="card-label">Legend</p>
+          <div class="legend-list">
+            <span class="legend-pill india">Indian Holiday</span>
+            <span class="legend-pill international">International Day</span>
+            <span class="legend-pill sunday">Sunday</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="highlights" aria-label="Holiday highlights">
+      <div class="section-heading">
+        <p class="section-kicker">Highlighted Dates</p>
+        <h2>Selected 2026 occasions</h2>
+      </div>
+      <div class="highlights-grid" id="holiday-highlights"></div>
+    </section>
+
+    <section class="planner-section" aria-label="Date task planner">
+      <div class="section-heading">
+        <p class="section-kicker">Date Planner</p>
+        <h2>Add tasks on any date</h2>
+      </div>
+
+      <div class="planner-panel">
+        <div class="planner-head">
+          <div>
+            <p class="planner-label">Selected Date</p>
+            <h3 id="selected-date-label">Choose a date from the calendar</h3>
+          </div>
+          <p class="planner-note">Click any day box below to plan tasks for that date.</p>
+        </div>
+
+        <form class="task-form" id="task-form">
+          <label class="sr-only" for="task-input">Add task</label>
+          <input id="task-input" type="text" maxlength="120" placeholder="Add a task for the selected date" required>
+          <label class="sr-only" for="task-time">Task time</label>
+          <input id="task-time" type="time" required>
+          <button type="submit">Add Task</button>
+        </form>
+
+        <div class="alarm-tools">
+          <button class="notify-btn" id="enable-notifications" type="button">Enable Alarm Notifications</button>
+          <p class="alarm-note" id="alarm-status">Notifications help show the reminder at the selected date and time.</p>
+        </div>
+
+        <ul class="task-list" id="task-list"></ul>
+      </div>
+    </section>
+
+    <section class="calendar-section" aria-label="2026 calendar">
+      <div class="section-heading">
+        <p class="section-kicker">Full Year View</p>
+        <h2>Monthly slider view</h2>
+      </div>
+      <div class="month-slider-toolbar">
+        <button class="month-nav" id="prev-month" type="button" aria-label="Previous month">Previous</button>
+        <div class="month-slider-title" id="month-slider-title">January 2026</div>
+        <button class="month-nav" id="next-month" type="button" aria-label="Next month">Next</button>
+      </div>
+      <div class="calendar-slider" id="calendar-grid"></div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
